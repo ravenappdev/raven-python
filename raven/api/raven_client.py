@@ -4,10 +4,10 @@ import re
 
 import six
 
-from swagger_client.api_client import ApiClient
+from raven.api_client import ApiClient
 
 
-class EventApi(object):
+class RavenClient(object):
 
     def __init__(self, api_client=None):
         if api_client is None:

@@ -15,16 +15,16 @@ from __future__ import absolute_import
 
 import unittest
 
-import swagger_client
-from swagger_client.api.event_api import EventApi  # noqa: E501
-from swagger_client.rest import ApiException
+import raven
+from raven.api.raven_client import EventApi  # noqa: E501
+from raven.rest import ApiException
 
 
 class TestEventApi(unittest.TestCase):
     """EventApi unit test stubs"""
 
     def setUp(self):
-        self.api = swagger_client.api.event_api.EventApi()  # noqa: E501
+        self.api = raven.api.event_api.EventApi()  # noqa: E501
 
     def tearDown(self):
         pass

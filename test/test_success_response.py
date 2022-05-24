@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import swagger_client
-from swagger_client.models.success_response import SuccessResponse  # noqa: E501
-from swagger_client.rest import ApiException
+import raven
+from raven.models.success_response import SuccessResponse  # noqa: E501
+from raven.rest import ApiException
 
 
 class TestSuccessResponse(unittest.TestCase):

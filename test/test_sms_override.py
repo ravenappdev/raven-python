@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import swagger_client
-from swagger_client.models.sms_override import SmsOverride  # noqa: E501
-from swagger_client.rest import ApiException
+import raven
+from raven.models.sms_override import SmsOverride  # noqa: E501
+from raven.rest import ApiException
 
 
 class TestSmsOverride(unittest.TestCase):

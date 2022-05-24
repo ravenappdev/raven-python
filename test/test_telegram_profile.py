@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import swagger_client
-from swagger_client.models.telegram_profile import TelegramProfile  # noqa: E501
-from swagger_client.rest import ApiException
+import raven
+from raven.models.telegram_profile import TelegramProfile  # noqa: E501
+from raven.rest import ApiException
 
 
 class TestTelegramProfile(unittest.TestCase):

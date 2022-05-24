@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import swagger_client
-from swagger_client.models.email_recipient import EmailRecipient  # noqa: E501
-from swagger_client.rest import ApiException
+import raven
+from raven.models.email_recipient import EmailRecipient  # noqa: E501
+from raven.rest import ApiException
 
 
 class TestEmailRecipient(unittest.TestCase):

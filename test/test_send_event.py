@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import swagger_client
-from swagger_client.models.send_event import SendEvent  # noqa: E501
-from swagger_client.rest import ApiException
+import raven
+from raven.models.send_event import SendEvent  # noqa: E501
+from raven.rest import ApiException
 
 
 class TestSendEvent(unittest.TestCase):
