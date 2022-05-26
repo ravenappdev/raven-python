@@ -17,7 +17,7 @@ import unittest
 
 import raven
 from raven.models.provider_override import ProviderOverride  # noqa: E501
-from raven.rest import ApiException
+from raven.rest import RavenException
 
 
 class TestProviderOverride(unittest.TestCase):

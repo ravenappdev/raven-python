@@ -18,7 +18,7 @@ import unittest
 
 import raven
 from raven.models.error_response import ErrorResponse  # noqa: E501
-from raven.rest import ApiException
+from raven.rest import RavenException
 
 
 class TestErrorResponse(unittest.TestCase):

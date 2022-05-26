@@ -17,7 +17,7 @@ import unittest
 
 import raven
 from raven.models.webhook_override import WebhookOverride  # noqa: E501
-from raven.rest import ApiException
+from raven.rest import RavenException
 
 
 class TestWebhookOverride(unittest.TestCase):

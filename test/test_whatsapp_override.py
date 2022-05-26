@@ -17,7 +17,7 @@ import unittest
 
 import raven
 from raven.models.whatsapp_override import WhatsappOverride  # noqa: E501
-from raven.rest import ApiException
+from raven.rest import RavenException
 
 
 class TestWhatsappOverride(unittest.TestCase):

@@ -17,7 +17,7 @@ import unittest
 
 import raven
 from raven.models.email_override import EmailOverride  # noqa: E501
-from raven.rest import ApiException
+from raven.rest import RavenException
 
 
 class TestEmailOverride(unittest.TestCase):

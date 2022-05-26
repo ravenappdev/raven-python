@@ -17,7 +17,7 @@ import unittest
 
 import raven
 from raven.models.user import User  # noqa: E501
-from raven.rest import ApiException
+from raven.rest import RavenException
 
 
 class TestUser(unittest.TestCase):

@@ -1,18 +1,21 @@
 from __future__ import absolute_import
 
-import re  
+import re
 
 import six
-
 from raven.api_client import ApiClient
+from raven.configuration import Configuration
 
 
 class RavenClient(object):
 
-    def __init__(self, api_client=None):
-        if api_client is None:
-            api_client = ApiClient()
-        self.api_client = api_client
+    def __init__(self, api_key=None):
+        if api_key is None:
+            api_key = ""
+        config = Configuration()
+        config.api_key['Authorization'] = api_key
+        config.api_key_prefix['Authorization'] = 'AuthKey'
+        self.api_client = ApiClient(config)
 
     def send_bulk(self, app_id, event, **kwargs):  
         kwargs['_return_http_data_only'] = True
@@ -23,23 +26,7 @@ class RavenClient(object):
             return data
 
     def send_bulk_with_http_info(self, app_id, event, **kwargs):  
-        """sends the event in bulk to all the clients specified  
-
-        This API will send the event in bulk to the clients specified  
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.send_bulk_with_http_info(app_id, event, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str app_id: app id of raven app (required)
-        :param SendEventBulk event: the body for the event that has to be triggered (required)
-        :param str idempotency_key: idempotency key of api
-        :return: SuccessResponse
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
+       
         all_params = ['app_id', 'event', 'idempotency_key']  
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
@@ -101,7 +88,7 @@ class RavenClient(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='SuccessResponse',  
+            response_type='Response',  
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -119,22 +106,6 @@ class RavenClient(object):
             return data
 
     def send_with_http_info(self, app_id, event, **kwargs):  
-        """sends the event to the client specified  
-
-        This API will send the event to the client specified  
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.send_with_http_info(app_id, event, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool
-        :param str app_id: app id of raven app (required)
-        :param SendEvent event: the body for the event that has to be triggered (required)
-        :param str idempotency_key: idempotency key of api
-        :return: Response
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
 
         all_params = ['app_id', 'event', 'idempotency_key']  
         all_params.append('async_req')

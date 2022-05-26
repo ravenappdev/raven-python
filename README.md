@@ -54,7 +54,7 @@ Please follow the [installation procedure](#installation--usage) and then run th
 from __future__ import print_function
 import time
 import swagger_client
-from swagger_client.rest import ApiException
+from swagger_client.rest import RavenException
 from pprint import pprint
 
 # Configure API key authorization: ApiKeyAuth
@@ -73,7 +73,7 @@ try:
     # sends the event in bulk to all the clients specified
     api_response = api_instance.send_bulk_event(app_id, event, idempotency_key=idempotency_key)
     pprint(api_response)
-except ApiException as e:
+except RavenException as e:
     print("Exception when calling EventApi->send_bulk_event: %s\n" % e)
 
 ```
@@ -111,14 +111,6 @@ All URIs are relative to *https://api.ravenapp.dev*
 - [VoiceOverride](docs/VoiceOverride.md)
 - [WebhookOverride](docs/WebhookOverride.md)
 - [WhatsappOverride](docs/WhatsappOverride.md)
-
-## Documentation For Authorization
-
-## ApiKeyAuth
-
-- **Type**: API key
-- **API key parameter name**: Authorization
-- **Location**: HTTP header
 
 ## Author
 

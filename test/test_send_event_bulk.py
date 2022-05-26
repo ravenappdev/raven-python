@@ -17,7 +17,7 @@ import unittest
 
 import raven
 from raven.models.send_event_bulk import SendEventBulk  # noqa: E501
-from raven.rest import ApiException
+from raven.rest import RavenException
 
 
 class TestSendEventBulk(unittest.TestCase):

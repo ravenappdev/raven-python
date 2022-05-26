@@ -17,7 +17,7 @@ import unittest
 
 import raven
 from raven.models.email_recipient import EmailRecipient  # noqa: E501
-from raven.rest import ApiException
+from raven.rest import RavenException
 
 
 class TestEmailRecipient(unittest.TestCase):

@@ -188,7 +188,7 @@ class RESTClientObject(object):
                     msg = """Cannot prepare a request message for provided
                              arguments. Please check that your arguments match
                              declared content type."""
-                    raise ApiException(status=0, reason=msg)
+                    raise RavenException(status=0, reason=msg)
             # For `GET`, `HEAD`
             else:
                 r = self.pool_manager.request(method, url,
@@ -198,7 +198,7 @@ class RESTClientObject(object):
                                               headers=headers)
         except urllib3.exceptions.SSLError as e:
             msg = "{0}\n{1}".format(type(e).__name__, str(e))
-            raise ApiException(status=0, reason=msg)
+            raise RavenException(status=0, reason=msg)
 
         if _preload_content:
             r = RESTResponse(r)
@@ -212,7 +212,7 @@ class RESTClientObject(object):
             logger.debug("response body: %s", r.data)
 
         if not 200 <= r.status <= 299:
-            raise ApiException(http_resp=r)
+            raise RavenException(http_resp=r)
 
         return r
 
@@ -282,7 +282,7 @@ class RESTClientObject(object):
                             body=body)
 
 
-class ApiException(Exception):
+class RavenException(Exception):
 
     def __init__(self, status=None, reason=None, http_resp=None):
         if http_resp:

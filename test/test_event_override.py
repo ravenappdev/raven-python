@@ -18,7 +18,7 @@ import unittest
 
 import raven
 from raven.models.event_override import EventOverride  # noqa: E501
-from raven.rest import ApiException
+from raven.rest import RavenException
 
 
 class TestEventOverride(unittest.TestCase):
