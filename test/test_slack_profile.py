@@ -17,7 +17,7 @@ import unittest
 
 import raven
 from raven.models.slack_profile import SlackProfile  # noqa: E501
-from raven.rest import RavenException
+from raven.exceptions.rest import RavenException
 
 
 class TestSlackProfile(unittest.TestCase):

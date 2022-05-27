@@ -17,7 +17,7 @@ import unittest
 
 import raven
 from raven.models.success_response import SuccessResponse  # noqa: E501
-from raven.rest import RavenException
+from raven.exceptions.rest import RavenException
 
 
 class TestSuccessResponse(unittest.TestCase):

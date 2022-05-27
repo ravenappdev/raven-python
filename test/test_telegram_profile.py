@@ -17,7 +17,7 @@ import unittest
 
 import raven
 from raven.models.telegram_profile import TelegramProfile  # noqa: E501
-from raven.rest import RavenException
+from raven.exceptions.rest import RavenException
 
 
 class TestTelegramProfile(unittest.TestCase):

@@ -17,7 +17,7 @@ import unittest
 
 import raven
 from raven.models.voice_override import VoiceOverride  # noqa: E501
-from raven.rest import RavenException
+from raven.exceptions.rest import RavenException
 
 
 class TestVoiceOverride(unittest.TestCase):

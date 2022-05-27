@@ -17,7 +17,7 @@ import unittest
 
 import raven
 from raven.models.sms_override import SmsOverride  # noqa: E501
-from raven.rest import RavenException
+from raven.exceptions.rest import RavenException
 
 
 class TestSmsOverride(unittest.TestCase):

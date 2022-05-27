@@ -17,7 +17,7 @@ import unittest
 
 import raven
 from raven.models.push_override import PushOverride  # noqa: E501
-from raven.rest import RavenException
+from raven.exceptions.rest import RavenException
 
 
 class TestPushOverride(unittest.TestCase):

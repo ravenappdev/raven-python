@@ -2,14 +2,14 @@ from pathlib import Path
 import unittest
 import json
 import uuid
-from raven.api import RavenClient
+from raven import RavenClient
 from raven.api_client import ApiClient
 from raven.models.response import Response  
-from raven.rest import RavenException
+from raven import RavenException
 
 
-class TestEventApi(unittest.TestCase):
-    """EventApi unit test stubs"""
+class TestRavenClient(unittest.TestCase):
+    """RavenClient unit test stubs"""
 
     def setUp(self):
         try:
@@ -17,8 +17,8 @@ class TestEventApi(unittest.TestCase):
             self.testData = json.load(file)
             file.close()
             self.client = RavenClient(self.testData['apiKey'])
-            self.send_testcases = self.testData['EventApi']['sendEvent']
-            self.send_bulk_testcases = self.testData['EventApi']['sendBulkEvent']
+            self.send_testcases = self.testData['RavenClient']['sendEvent']
+            self.send_bulk_testcases = self.testData['RavenClient']['sendBulkEvent']
         except IOError:
             raise IOError
 
@@ -55,8 +55,7 @@ class TestEventApi(unittest.TestCase):
             if 'error' in output:
                 error = output['error']
             print(e.body)
-            # exp_err = Response(error=error,errors=errors)
-            # self.assertEqual(e.body,exp_err)
+
         
     def test_send_bulk(self):
         for test in self.send_bulk_testcases:

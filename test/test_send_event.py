@@ -17,7 +17,7 @@ import unittest
 
 import raven
 from raven.models.send_event import SendEvent  # noqa: E501
-from raven.rest import RavenException
+from raven.exceptions.rest import RavenException
 
 
 class TestSendEvent(unittest.TestCase):

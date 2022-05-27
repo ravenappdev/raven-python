@@ -1,5 +1,5 @@
 
-# PushOverride
+# TelegramOverride
 
 ## Properties
 | Name           | Type       | Description | Notes      |

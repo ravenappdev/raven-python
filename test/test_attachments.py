@@ -17,7 +17,7 @@ import unittest
 
 import raven
 from raven.models.attachments import Attachments  # noqa: E501
-from raven.rest import RavenException
+from raven.exceptions.rest import RavenException
 
 
 class TestAttachments(unittest.TestCase):

@@ -17,7 +17,7 @@ import unittest
 
 import raven
 from raven.models.slack_override import SlackOverride  # noqa: E501
-from raven.rest import RavenException
+from raven.exceptions.rest import RavenException
 
 
 class TestSlackOverride(unittest.TestCase):

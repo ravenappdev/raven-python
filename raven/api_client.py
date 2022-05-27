@@ -25,7 +25,7 @@ from six.moves.urllib.parse import quote
 
 from raven.configuration import Configuration
 import raven.models
-from raven import rest
+from raven.exceptions import rest
 
 
 class ApiClient(object):

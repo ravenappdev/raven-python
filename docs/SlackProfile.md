@@ -1,12 +1,12 @@
+
 # SlackProfile
 
 ## Properties
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**access_token** | **str** |  | [optional] 
-**email** | **str** |  | [optional] 
-**channel_id** | **str** |  | [optional] 
+| Name            | Type       | Description | Notes      |
+|-----------------|------------|-------------|------------|
+| **accessToken** | **String** |             | [optional] |
+| **email**       | **String** |             | [optional] |
+| **channelId**   | **String** |             | [optional] |
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

@@ -1,11 +1,11 @@
 
 
 # import apis into sdk package
-from raven.api import RavenClient
+from raven.api.raven_client import RavenClient
 
 # import ApiClient
 from raven.api_client import ApiClient
-# from raven.configuration import Configuration
+
 # import models into sdk package
 from raven.models.attachments import Attachments
 from raven.models.data import Data
@@ -29,3 +29,5 @@ from raven.models.user import User
 from raven.models.voice_override import VoiceOverride
 from raven.models.webhook_override import WebhookOverride
 from raven.models.whatsapp_override import WhatsappOverride
+#RavenException
+from raven.exceptions.rest import RavenException

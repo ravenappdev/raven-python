@@ -17,7 +17,7 @@ import unittest
 
 import raven
 from raven.models.properties import Properties  # noqa: E501
-from raven.rest import RavenException
+from raven.exceptions.rest import RavenException
 
 
 class TestProperties(unittest.TestCase):

@@ -1,6 +1,6 @@
 {
   "apiKey": "YXNkaGl3YW1zY2lhdXNuamxxamR3b3ducWlsamRrd3FlcWU=",
-  "EventApi": {
+  "RavenClient": {
     "sendBulkEvent": [
       {
         "name": "successful call with no error",
