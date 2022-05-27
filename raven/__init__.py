@@ -5,7 +5,7 @@ from raven.api import RavenClient
 
 # import ApiClient
 from raven.api_client import ApiClient
-from raven.configuration import Configuration
+# from raven.configuration import Configuration
 # import models into sdk package
 from raven.models.attachments import Attachments
 from raven.models.data import Data

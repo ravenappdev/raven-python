@@ -1,3 +1,4 @@
+from pathlib import Path
 import unittest
 import json
 import uuid
@@ -12,7 +13,7 @@ class TestEventApi(unittest.TestCase):
 
     def setUp(self):
         try:
-            file = open('/home/montooboss/Desktop/INTERN/Raven-2/raven-python/test/testData.json')
+            file = open(Path().absolute().__str__() + '/test/testData.json')
             self.testData = json.load(file)
             file.close()
             self.client = RavenClient(self.testData['apiKey'])

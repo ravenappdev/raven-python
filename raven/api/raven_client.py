@@ -20,12 +20,12 @@ class RavenClient(object):
     def send_bulk(self, app_id, event, **kwargs):  
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.send_bulk_with_http_info(app_id, event, **kwargs)  
+            return self.__send_bulk_with_http_info(app_id, event, **kwargs)  
         else:
-            (data) = self.send_bulk_with_http_info(app_id, event, **kwargs)  
+            (data) = self.__send_bulk_with_http_info(app_id, event, **kwargs)  
             return data
 
-    def send_bulk_with_http_info(self, app_id, event, **kwargs):  
+    def __send_bulk_with_http_info(self, app_id, event, **kwargs):  
        
         all_params = ['app_id', 'event', 'idempotency_key']  
         all_params.append('async_req')
@@ -100,12 +100,12 @@ class RavenClient(object):
         
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.send_with_http_info(app_id, event, **kwargs)  
+            return self.__send_with_http_info(app_id, event, **kwargs)  
         else:
-            (data) = self.send_with_http_info(app_id, event, **kwargs)  
+            (data) = self.__send_with_http_info(app_id, event, **kwargs)  
             return data
 
-    def send_with_http_info(self, app_id, event, **kwargs):  
+    def __send_with_http_info(self, app_id, event, **kwargs):  
 
         all_params = ['app_id', 'event', 'idempotency_key']  
         all_params.append('async_req')
