@@ -13,9 +13,9 @@ from .core.api_error import ApiError
 from .core.jsonable_encoder import jsonable_encoder
 from .core.remove_none_from_headers import remove_none_from_headers
 from .errors.event_not_found_error import EventNotFoundError
-from .resources.device.client import DeviceClient
+from .resources.device.client import AsyncDeviceClient, DeviceClient
 from .resources.ids.types.app_id import AppId
-from .resources.user.client import UserClient
+from .resources.user.client import AsyncUserClient, UserClient
 from .types.batch_event import BatchEvent
 from .types.event_not_found_error_body import EventNotFoundErrorBody
 from .types.event_override import EventOverride
@@ -81,3 +81,65 @@ class RavenApi:
     @cached_property
     def user(self) -> UserClient:
         return UserClient(environment=self._environment, auth_key=self.auth_key)
+
+
+class AsyncRavenApi:
+    def __init__(self, *, environment: RavenApiEnvironment, auth_key: str):
+        self._environment = environment
+        self.auth_key = auth_key
+
+    async def send(
+        self,
+        app_id: AppId,
+        *,
+        event: str,
+        data: typing.Dict[str, typing.Any],
+        user: typing.Optional[User] = None,
+        schedule_at: typing.Optional[int] = None,
+        override: typing.Optional[EventOverride] = None,
+        idempotency_key: typing.Optional[str] = None,
+    ) -> SendEventResponse:
+        async with httpx.AsyncClient() as _client:
+            _response = await _client.request(
+                "POST",
+                urllib.parse.urljoin(f"{self._environment}/", f"v1/apps/{app_id}/events/send"),
+                json=jsonable_encoder(
+                    {"event": event, "data": data, "user": user, "scheduleAt": schedule_at, "override": override}
+                ),
+                headers=remove_none_from_headers({"Idempotency-Key": idempotency_key, "Authorization": self.auth_key}),
+            )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(SendEventResponse, _response.json())  # type: ignore
+        if _response.status_code == 404:
+            raise EventNotFoundError(pydantic.parse_obj_as(EventNotFoundErrorBody, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def send_bulk(
+        self, app_id: AppId, *, event: str, batch: typing.List[BatchEvent], idempotency_key: typing.Optional[str] = None
+    ) -> SendEventResponse:
+        async with httpx.AsyncClient() as _client:
+            _response = await _client.request(
+                "POST",
+                urllib.parse.urljoin(f"{self._environment}/", f"v1/apps/{app_id}/events/bulk_send"),
+                json=jsonable_encoder({"event": event, "batch": batch}),
+                headers=remove_none_from_headers({"Idempotency-Key": idempotency_key, "Authorization": self.auth_key}),
+            )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(SendEventResponse, _response.json())  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    @cached_property
+    def device(self) -> AsyncDeviceClient:
+        return AsyncDeviceClient(environment=self._environment, auth_key=self.auth_key)
+
+    @cached_property
+    def user(self) -> AsyncUserClient:
+        return AsyncUserClient(environment=self._environment, auth_key=self.auth_key)

@@ -3,6 +3,8 @@
 import datetime as dt
 import typing
 
+import pydantic
+
 from ..core.datetime_utils import serialize_datetime
 from .attachment import Attachment
 from .channel_override import ChannelOverride
@@ -11,17 +13,21 @@ from .email_recipient import EmailRecipient
 
 
 class EmailOverride(ChannelOverride):
-    from: EmailRecipient
+    from_: EmailRecipient = pydantic.Field(alias="from")
     cc: typing.List[EmailRecipient]
     bcc: typing.List[EmailRecipient]
     attachments: typing.List[Attachment]
     message: EmailMessage
+
     def json(self, **kwargs: typing.Any) -> str:
-        kwargs_with_defaults: typing.Any = { "by_alias": True, "exclude_unset": True, **kwargs }
+        kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
         return super().json(**kwargs_with_defaults)
+
     def dict(self, **kwargs: typing.Any) -> typing.Dict[str, typing.Any]:
-        kwargs_with_defaults: typing.Any = { "by_alias": True, "exclude_unset": True, **kwargs }
+        kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
         return super().dict(**kwargs_with_defaults)
+
     class Config:
         frozen = True
+        allow_population_by_field_name = True
         json_encoders = {dt.datetime: serialize_datetime}
