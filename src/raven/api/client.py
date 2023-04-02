@@ -41,7 +41,7 @@ class RavenApi:
     ) -> SendEventResponse:
         _response = httpx.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", f"v1/apps/{app_id}/events/send"),
+            urllib.parse.urljoin(f"{self._environment.value}/", f"v1/apps/{app_id}/events/send"),
             json=jsonable_encoder(
                 {"event": event, "data": data, "user": user, "scheduleAt": schedule_at, "override": override}
             ),
@@ -62,7 +62,7 @@ class RavenApi:
     ) -> SendEventResponse:
         _response = httpx.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", f"v1/apps/{app_id}/events/bulk_send"),
+            urllib.parse.urljoin(f"{self._environment.value}/", f"v1/apps/{app_id}/events/bulk_send"),
             json=jsonable_encoder({"event": event, "batch": batch}),
             headers=remove_none_from_headers({"Idempotency-Key": idempotency_key, "Authorization": self.auth_key}),
         )
@@ -102,7 +102,7 @@ class AsyncRavenApi:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "POST",
-                urllib.parse.urljoin(f"{self._environment}/", f"v1/apps/{app_id}/events/send"),
+                urllib.parse.urljoin(f"{self._environment.value}/", f"v1/apps/{app_id}/events/send"),
                 json=jsonable_encoder(
                     {"event": event, "data": data, "user": user, "scheduleAt": schedule_at, "override": override}
                 ),
@@ -124,7 +124,7 @@ class AsyncRavenApi:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "POST",
-                urllib.parse.urljoin(f"{self._environment}/", f"v1/apps/{app_id}/events/bulk_send"),
+                urllib.parse.urljoin(f"{self._environment.value}/", f"v1/apps/{app_id}/events/bulk_send"),
                 json=jsonable_encoder({"event": event, "batch": batch}),
                 headers=remove_none_from_headers({"Idempotency-Key": idempotency_key, "Authorization": self.auth_key}),
             )

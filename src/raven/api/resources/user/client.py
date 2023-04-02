@@ -32,7 +32,7 @@ class UserClient:
     ) -> RavenUser:
         _response = httpx.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", f"v1/apps/{app_id}/users"),
+            urllib.parse.urljoin(f"{self._environment.value}/", f"v1/apps/{app_id}/users"),
             json=jsonable_encoder({"user_id": user_id, "mobile": mobile, "email": email, "whats_app": whats_app}),
             headers=remove_none_from_headers({"Authorization": self.auth_key}),
         )
@@ -47,7 +47,7 @@ class UserClient:
     def get(self, app_id: AppId, user_id: UserId) -> RavenUser:
         _response = httpx.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", f"v1/apps/{app_id}/users/{user_id}"),
+            urllib.parse.urljoin(f"{self._environment.value}/", f"v1/apps/{app_id}/users/{user_id}"),
             headers=remove_none_from_headers({"Authorization": self.auth_key}),
         )
         if 200 <= _response.status_code < 300:
@@ -76,7 +76,7 @@ class AsyncUserClient:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "POST",
-                urllib.parse.urljoin(f"{self._environment}/", f"v1/apps/{app_id}/users"),
+                urllib.parse.urljoin(f"{self._environment.value}/", f"v1/apps/{app_id}/users"),
                 json=jsonable_encoder({"user_id": user_id, "mobile": mobile, "email": email, "whats_app": whats_app}),
                 headers=remove_none_from_headers({"Authorization": self.auth_key}),
             )
@@ -92,7 +92,7 @@ class AsyncUserClient:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "GET",
-                urllib.parse.urljoin(f"{self._environment}/", f"v1/apps/{app_id}/users/{user_id}"),
+                urllib.parse.urljoin(f"{self._environment.value}/", f"v1/apps/{app_id}/users/{user_id}"),
                 headers=remove_none_from_headers({"Authorization": self.auth_key}),
             )
         if 200 <= _response.status_code < 300:

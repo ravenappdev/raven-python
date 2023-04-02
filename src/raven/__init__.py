@@ -41,6 +41,7 @@ from .api import (
     ids,
     user,
 )
+from .environment import RavenApiEnvironment
 
 __all__ = [
     "AppId",
@@ -63,6 +64,7 @@ __all__ = [
     "Platform",
     "ProviderOverride",
     "PushOverride",
+    "RavenApiEnvironment",
     "RavenUser",
     "RequestId",
     "SendEventResponse",
