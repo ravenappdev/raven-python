@@ -17,6 +17,37 @@ pip install ravendev
 poetry add ravendev
 ```
 
+## Usage
+
+```python
+from ravendev.client import RavenApi
+
+raven = RavenApi(auth_key="YOUR_AUTH_KEY")
+
+raven.send(
+  app_id="some-app-id",
+  event="event",
+  data={},
+)
+```
+
+## Async client
+
+This SDK also includes an async client, which supports the `await` syntax:
+
+```python
+from ravendev.client import AsyncRavenApi
+
+raven = AsyncRavenApi(auth_key="YOUR_AUTH_KEY")
+
+async def send_event() -> None:
+  await raven.send(
+    app_id="some-app-id",
+    event="event",
+    data={},
+  )
+```
+
 ## Beta status
 
 This SDK is in beta, and there may be breaking changes between versions without a major version update. Therefore, we recommend pinning the package version to a specific version in your build.gradle file. This way, you can install the same version each time without breaking changes unless you are intentionally looking for the latest version.
