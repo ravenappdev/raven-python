@@ -4,4 +4,4 @@ import enum
 
 
 class RavenApiEnvironment(enum.Enum):
-    prod = "https://api.ravenapp.dev"
+    PROD = "https://api.ravenapp.dev"

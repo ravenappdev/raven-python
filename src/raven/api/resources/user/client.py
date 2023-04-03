@@ -17,7 +17,7 @@ from .types.raven_user import RavenUser
 
 
 class UserClient:
-    def __init__(self, *, environment: RavenApiEnvironment, auth_key: str):
+    def __init__(self, *, environment: RavenApiEnvironment = RavenApiEnvironment.PROD, auth_key: str):
         self._environment = environment
         self.auth_key = auth_key
 
@@ -60,7 +60,7 @@ class UserClient:
 
 
 class AsyncUserClient:
-    def __init__(self, *, environment: RavenApiEnvironment, auth_key: str):
+    def __init__(self, *, environment: RavenApiEnvironment = RavenApiEnvironment.PROD, auth_key: str):
         self._environment = environment
         self.auth_key = auth_key
 

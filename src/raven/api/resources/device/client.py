@@ -17,7 +17,7 @@ from .types.device import Device
 
 
 class DeviceClient:
-    def __init__(self, *, environment: RavenApiEnvironment, auth_key: str):
+    def __init__(self, *, environment: RavenApiEnvironment = RavenApiEnvironment.PROD, auth_key: str):
         self._environment = environment
         self.auth_key = auth_key
 
@@ -87,7 +87,7 @@ class DeviceClient:
 
 
 class AsyncDeviceClient:
-    def __init__(self, *, environment: RavenApiEnvironment, auth_key: str):
+    def __init__(self, *, environment: RavenApiEnvironment = RavenApiEnvironment.PROD, auth_key: str):
         self._environment = environment
         self.auth_key = auth_key
 
