@@ -25,8 +25,11 @@ from ravendev.client import RavenApi
 raven = RavenApi(auth_key="YOUR_AUTH_KEY")
 
 raven.send(
-  app_id="some-app-id",
+  app_id="<raven_app_id>",
   event="event",
+  user={
+    email : "john.doe@xyz.com"
+  },
   data={},
 )
 ```
@@ -42,8 +45,11 @@ raven = AsyncRavenApi(auth_key="YOUR_AUTH_KEY")
 
 async def send_event() -> None:
   await raven.send(
-    app_id="some-app-id",
+    app_id="<raven_app_id>",
     event="event",
+    user={
+      email : "john.doe@xyz.com"
+    },
     data={},
   )
 ```
