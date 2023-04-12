@@ -41,6 +41,7 @@ This SDK also includes an async client, which supports the `await` syntax:
 
 ```python
 from ravendev.client import AsyncRavenApi
+from ravendev import User
 
 raven = AsyncRavenApi(auth_key="YOUR_AUTH_KEY")
 
@@ -48,9 +49,7 @@ async def send_event() -> None:
   await raven.send(
     app_id="<raven_app_id>",
     event="event",
-    user={
-      email : "john.doe@xyz.com"
-    },
+    user=User(email="john.doe@xyz.com"),
     data={},
   )
 ```
