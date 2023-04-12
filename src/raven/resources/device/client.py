@@ -6,10 +6,10 @@ from json.decoder import JSONDecodeError
 import httpx
 import pydantic
 
-from ....environment import RavenApiEnvironment
 from ...core.api_error import ApiError
 from ...core.jsonable_encoder import jsonable_encoder
 from ...core.remove_none_from_headers import remove_none_from_headers
+from ...environment import RavenApiEnvironment
 from ..ids.types.app_id import AppId
 from ..ids.types.device_id import DeviceId
 from ..ids.types.user_id import UserId

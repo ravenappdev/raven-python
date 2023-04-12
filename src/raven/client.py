@@ -8,10 +8,10 @@ import httpx
 import pydantic
 from backports.cached_property import cached_property
 
-from ..environment import RavenApiEnvironment
 from .core.api_error import ApiError
 from .core.jsonable_encoder import jsonable_encoder
 from .core.remove_none_from_headers import remove_none_from_headers
+from .environment import RavenApiEnvironment
 from .errors.event_not_found_error import EventNotFoundError
 from .resources.device.client import AsyncDeviceClient, DeviceClient
 from .resources.ids.types.app_id import AppId
